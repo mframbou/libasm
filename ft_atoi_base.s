@@ -100,11 +100,13 @@ base_to_dec_loop:
 	push rdi
 	push rsi
 
-; need to fix this
-	mov rdi, rsi
-	mov rsi, BYTE [rdi + rcx]
+	mov dil, BYTE [rdi + rcx]
+	mov rsi, rsi ; nice :)
 
+	; char c, char *str
 	call index_of_char_in_str
+
+	mov r10, rax
 
 	pop rsi
 	pop rdi
@@ -115,8 +117,10 @@ base_to_dec_loop:
 	pop r8
 
 	; res += index_of_char
+	add rax, r10
+	inc rcx
 
-	jmp return_atoi_base ; return res * sign
+	jmp base_to_dec_loop ; return res * sign
 
 
 
@@ -125,14 +129,14 @@ return_atoi_base:
 	ret
 
 ; int index_of_char_in_str(char *str, char c)
-index_of_char_in_str
+index_of_char_in_str:
 	mov rax, 0 ; i = 0
 
 index_of_char_loop:
-	cmp BYTE [rdi + rax], 0 ; if (str[i] == 0) return (should never happen with previous checks)
+	cmp BYTE [rsi + rax], 0 ; if (str[i] == 0) return (should never happen with previous checks)
 	je return
 
-	cmp BYTE [rdi + rax], sil ; only cmp last byte of reg
+	cmp BYTE [rsi + rax], dil ; only cmp last byte of reg
 	je return
 
 	inc rax ; i++
