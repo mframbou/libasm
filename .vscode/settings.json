@@ -2,6 +2,9 @@
 	"files.associations": {
 		"libasm.h": "c",
 		"stdlib.h": "c",
-		"cdefs.h": "c"
+		"cdefs.h": "c",
+		"stdio.h": "c",
+		"malloc.h": "c",
+		"_malloc.h": "c"
 	}
 }
