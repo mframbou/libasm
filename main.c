@@ -83,9 +83,9 @@ int main()
 
 
     {
-
-        char *str = "1";
-        char *base = "1234567890";
+        printf("--- ft_atoi_base ---\n");
+        char *str = "---123444";
+        char *base = "ab";
         printf("Atoi base(%s, %s) = %d\n", str, base, ft_atoi_base(str, base));
     }
 
