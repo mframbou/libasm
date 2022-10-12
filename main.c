@@ -80,4 +80,12 @@ int main()
         char *dup = ft_strdup(str);
         printf("dup: %s (base str: %s)\n", dup, str);
     }
+
+
+    {
+
+        char *base = "abcd";
+        printf("Is valid base(%s) = %d\n", base, is_valid_base(base));
+    }
+
 }

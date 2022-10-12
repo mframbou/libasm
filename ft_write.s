@@ -7,7 +7,6 @@ section .text
 ; it seems that we need 0x200000X
 
 _ft_write:
-
 	;args order: [rdi, rsi, rdx, rcx, r8, r9]
 	; https://www.tutorialspoint.com/assembly_programming/assembly_system_calls.htm
 

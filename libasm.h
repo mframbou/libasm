@@ -11,4 +11,7 @@ ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 ssize_t	ft_read(int fildes, void *buf, size_t nbyte);
 char	*ft_strdup(const char *s1);
 
+
+int is_valid_base(char *str);
+
 #endif

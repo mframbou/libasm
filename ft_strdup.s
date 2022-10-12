@@ -26,6 +26,6 @@ _ft_strdup:
 	call _ft_strcpy		; ft_strcpy(dst, src)
 	ret					; return
 
-	end:
-		ret
+end:
+	ret
 
