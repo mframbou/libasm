@@ -1,21 +1,28 @@
-;global _ft_atoi_base
-
-global _is_valid_base
+global _ft_atoi_base
 
 section .text
 
 ;args order: [rdi, rsi, rdx, rcx, r8, r9]
 
 
-;_ft_atoi_base:
-;call is_valid_base
-;;cmp rax, 0
-;;jne end_error ; if not valid, return
+; ft_atoi_base(char *str, char *base)
+_ft_atoi_base:
+
+push rdi ; save rdi
+mov rdi, rsi ; move base to first arg for is_valid_base
+call is_valid_base
+pop rdi
+
+cmp rax, 0 ; if (!is_valid_base)
+je return_error ; return(0)
+
+mov rax, 123456
+ret
 
 
 
 ; bool is_valid_base(char *base)
-_is_valid_base:
+is_valid_base:
 ; base is the same arg we want in count_char (str) so no need to push
 mov rcx, 0 ; i = 0
 

@@ -84,8 +84,9 @@ int main()
 
     {
 
-        char *base = "abcd";
-        printf("Is valid base(%s) = %d\n", base, is_valid_base(base));
+        char *str = "1";
+        char *base = "1234567890";
+        printf("Atoi base(%s, %s) = %d\n", str, base, ft_atoi_base(str, base));
     }
 
 }
