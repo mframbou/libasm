@@ -143,8 +143,9 @@ int main()
         ft_list_push_front(&lst, strdup("test3"));
         printf("List before: ");
         print_list(lst);
-        ft_list_sort(&lst, strcmp);
-        printf("List after:");
+        int ret = ft_list_sort(&lst, strcmp);
+        printf("ret=%d\n",ret);
+        printf("List after: ");
         print_list(lst);
     }
 

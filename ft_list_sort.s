@@ -31,7 +31,6 @@ bubble_sort_loop:
 
 
 foreach_loop:
-
 	cmp r9, 0 ; if curr->next == NULL
 	je end_bubble_sort_loop
 
@@ -39,11 +38,15 @@ foreach_loop:
 	push rsi
 	push r8
 	push r9
+	push rdx
+	push rcx
 
 	mov rdi, [r8]
 	mov rsi, [r9]
 	call rcx ; comp function has been copied into rcx (because we need rsi for arguments)
 
+	pop rcx
+	pop rdx
 	pop r9
 	pop r8
 	pop rsi
@@ -64,9 +67,6 @@ end_foreach_loop:
 	jmp foreach_loop
 
 end_bubble_sort_loop:
-	mov rax, 111
-	ret
-
 	dec rdx
 	jmp bubble_sort_loop
 
