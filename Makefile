@@ -62,6 +62,7 @@ clean:
 
 fclean:		clean
 	@rm -f $(NAME)
+	@rm -f ./test
 	@echo "$(RED)Removing $(IRED)$(NAME)$(RESET)"
 
 re:			fclean all
