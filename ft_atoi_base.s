@@ -10,8 +10,10 @@ section .text
 ; ft_atoi_base(char *str, char *base)
 _ft_atoi_base:
 	push rdi ; save rdi
+	push rsi
 	mov rdi, rsi ; move base to first arg for is_valid_base
 	call is_valid_base
+	pop rsi
 	pop rdi
 
 	cmp rax, 0 ; if (!is_valid_base)
@@ -85,9 +87,9 @@ base_to_dec:
 	; r8 = sign, rcx = i (start of str), r9 = bsize, rax = res(=0), r11 = i (end of str)
 	; while(--i)
 base_to_dec_loop:
-	dec r11 ; while (--i >= 0)
-	cmp r11, 0
-	jl return_atoi_base ; (if < 0 return)
+	; while (i (rcx) < strlen(str))
+	cmp rcx, r11
+	jge return_atoi_base ; (if > strlen (r11) return)
 
 	imul rax, r9 ; res *= bsize (so on first iteration it's always 0)
 
@@ -153,14 +155,14 @@ is_valid_base_loop:
 	cmp BYTE [rdi + rcx], 0 ; if (base[i] != 0)
 	jne is_valid_base_loop_2 ; check if length is <= to 1, if so return 0, else return 1
 
-	return_if_valid: ; only executed if str[i] == '\0' and nothing is wrong yet
+	; only executed if str[i] == '\0' and nothing is wrong yet
 	cmp rcx, 1 ; if (i <= 1)
 	jle return_error ; return(0)
 	jmp return_success ; return(1)
 
 is_valid_base_loop_2:
-	push rsi
 	mov sil, BYTE [rdi + rcx] ; char c = base[i] (sil = rsi last byte)
+	push rsi
 	;if (duplicate) return(0)
 	push rcx
 	call count_char ; count_char(base, c)
@@ -177,9 +179,10 @@ is_valid_base_loop_2:
 	cmp rax, 1 ; if (ft_isspace(c))
 	je return_error;
 
-	cmp rdi, '+' ; if (c == '+)
+	; only comp 1 byte and not whole registry
+	cmp sil, '+' ; if (c == '+')
 	je return_error
-	cmp rdi, '-' ; if (c == '-)
+	cmp sil, '-' ; if (c == '-')
 	je return_error
 
 	inc rcx ; i++

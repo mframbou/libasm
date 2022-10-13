@@ -41,8 +41,11 @@ int main()
 	{
         printf("--- ft_write ---\n");
         char *str = "Hola me llamo pablo\n";
-        printf("%ld\n", ft_write(1, str, ft_strlen(str)));
-        printf("errno: %d\n", errno);
+        printf("valid: %ld\n", ft_write(1, str, ft_strlen(str)));
+        printf("errno: %s\n", strerror(errno));
+
+        printf("\ninvalid: %ld\n", ft_write(-10, str, ft_strlen(str)));
+        printf("errno: %s\n", strerror(errno));
     }
 
 	{
@@ -84,8 +87,8 @@ int main()
 
     {
         printf("--- ft_atoi_base ---\n");
-        char *str = "ff";
-        char *base = "0123456789abcdef";
+        char *str = "6";
+        char *base = "0123456789";
         printf("Atoi base(%s, %s) = %d\n", str, base, ft_atoi_base(str, base));
     }
 

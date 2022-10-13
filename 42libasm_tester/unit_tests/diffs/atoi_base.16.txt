@@ -1,0 +1,8 @@
+--- EXPECTED RESULT ---
+string = abc56
+base = 0123456789
+return = 0
+--- ACTUAL RESULT ---
+string = abc56
+base = 0123456789
+return = 111056
