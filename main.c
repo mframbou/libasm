@@ -21,6 +21,12 @@ void print_list(t_list *lst)
     printf("\n");
 }
 
+void free_fct(void *data)
+{
+    printf("Freeing %s\n", data);
+    free(data);
+}
+
 int main()
 {
 	{
@@ -143,8 +149,22 @@ int main()
         ft_list_push_front(&lst, strdup("test3"));
         printf("List before: ");
         print_list(lst);
-        int ret = ft_list_sort(&lst, strcmp);
-        printf("ret=%d\n",ret);
+        ft_list_sort(&lst, &strcmp);
+        printf("List after: ");
+        print_list(lst);
+    }
+
+    {
+        printf("--- ft_list_remove_if ---\n");
+
+        t_list *lst = NULL;
+        ft_list_push_front(&lst, strdup("0"));
+        ft_list_push_front(&lst, strdup("1"));
+        ft_list_push_front(&lst, strdup("2"));
+        ft_list_push_front(&lst, strdup("3"));
+        printf("List before: ");
+        print_list(lst);
+        ft_list_remove_if(&lst, "1", &strcmp, free_fct);
         printf("List after: ");
         print_list(lst);
     }

@@ -72,5 +72,4 @@ end_bubble_sort_loop:
 
 
 return:
-	mov rax, 100
 	ret
