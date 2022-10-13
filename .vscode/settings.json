@@ -5,6 +5,7 @@
 		"cdefs.h": "c",
 		"stdio.h": "c",
 		"malloc.h": "c",
-		"_malloc.h": "c"
+		"_malloc.h": "c",
+		"header_test.h": "c"
 	}
 }

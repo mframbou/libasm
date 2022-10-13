@@ -13,12 +13,13 @@ _ft_list_push_front:
 	call _malloc
 	pop rsi
 	pop rdi
-	cmp rxa, 0
+	cmp rax, 0
 	je return
 
-	mov [rxa], rsi ; new->data = data
-	mov [rxa + 8], [rdi] ; new->next = *begin_list
-	mov [rdi], rxa ; *begin_list = new
+	mov [rax], rsi ; new->data = data
+	mov rdx, [rdi] ; because we cannot mov [reg1], [reg2], only [reg1], val
+	mov [rax + 8], rdx ; new->next = *begin_list
+	mov [rdi], rax ; *begin_list = new
 
 return:
 	ret

@@ -1,15 +1,15 @@
 SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s \
-	   ft_atoi_base.s
+	   ft_atoi_base.s ft_list_push_front.s ft_list_size.s ft_list_sort.s
 
 OBJS = $(SRCS:.s=.o)
 
 NAME = libasm.a
 
 ASMC = nasm
-ASMFLAGS = -f macho64
+ASMFLAGS = -f macho64 -g
 
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -g -fsanitize=address
 
 SHELL = zsh
 
@@ -53,6 +53,8 @@ test: $(NAME)
 	@echo "$(PURPLE)Linking *.o and main.o into $(PURPLE_BOLD)test $(RESET)"
 
 all: test
+
+bonus: all
 
 clean:
 	@rm -f $(OBJS)

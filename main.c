@@ -5,6 +5,22 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+void print_list(t_list *lst)
+{
+    int i = 0;
+    printf("list: ");
+    if (!lst)
+        printf("(null)");
+
+    while (lst)
+    {
+        printf("%s%s", i == 0 ? "" : " --> ", lst->data);
+        lst = lst->next;
+        i++;
+    }
+    printf("\n");
+}
+
 int main()
 {
 	{
@@ -90,6 +106,46 @@ int main()
         char *str = "abc56";
         char *base = "0123456789";
         printf("Atoi base(%s, %s) = %d\n", str, base, ft_atoi_base(str, base));
+
+        char *str2 = "ffff";
+        char *base2 = "0123456789abcdef";
+        printf("Atoi base(%s, %s) = %d\n", str2, base2, ft_atoi_base(str2, base2));
+    }
+
+    {
+        printf("--- ft_list_push_front ---\n");
+        t_list *lst = NULL;
+        print_list(lst);
+        ft_list_push_front(&lst, strdup("test1"));
+        print_list(lst);
+        ft_list_push_front(&lst, strdup("test2"));
+        print_list(lst);
+        ft_list_push_front(&lst, strdup("test3"));
+        print_list(lst);
+    }
+
+    {
+        printf("--- ft_list_size ---\n");
+        t_list *lst = NULL;
+        printf("size of list: %d\n", ft_list_size(lst));
+        ft_list_push_front(&lst, strdup("test"));
+        printf("size of list: %d\n", ft_list_size(lst));
+        ft_list_push_front(&lst, strdup("test"));
+        printf("size of list: %d\n", ft_list_size(lst));
+    }
+
+    {
+        printf("--- ft_list_sort ---\n");
+        t_list *lst = NULL;
+        ft_list_push_front(&lst, strdup("test2"));
+        ft_list_push_front(&lst, strdup("test4"));
+        ft_list_push_front(&lst, strdup("test1"));
+        ft_list_push_front(&lst, strdup("test3"));
+        printf("List before: ");
+        print_list(lst);
+        ft_list_sort(&lst, strcmp);
+        printf("List after:");
+        print_list(lst);
     }
 
 }
