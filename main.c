@@ -87,7 +87,7 @@ int main()
 
     {
         printf("--- ft_atoi_base ---\n");
-        char *str = "6";
+        char *str = "abc56";
         char *base = "0123456789";
         printf("Atoi base(%s, %s) = %d\n", str, base, ft_atoi_base(str, base));
     }

@@ -9,6 +9,14 @@ section .text
 
 ; ft_atoi_base(char *str, char *base)
 _ft_atoi_base:
+
+	; check if base or str is null
+	cmp rdi, 0
+	je return_error
+
+	cmp rsi, 0
+	je return_error
+
 	push rdi ; save rdi
 	push rsi
 	mov rdi, rsi ; move base to first arg for is_valid_base
@@ -118,6 +126,10 @@ base_to_dec_loop:
 	pop rcx
 	pop r8
 
+	; if (index == -1) return 0
+	cmp r10, -1
+	je return_error
+
 	; res += index_of_char
 	add rax, r10
 	inc rcx
@@ -130,14 +142,17 @@ return_atoi_base:
 	imul rax, r8 ; return res * sign
 	ret
 
-; int index_of_char_in_str(char *str, char c)
+; int index_of_char_in_str(char *str, char c), -1 if not found
 index_of_char_in_str:
 	mov rax, 0 ; i = 0
 
 index_of_char_loop:
 	cmp BYTE [rsi + rax], 0 ; if (str[i] == 0) return (should never happen with previous checks)
-	je return
+	jne yes_sir
+	mov rax, -1
+	ret
 
+yes_sir:
 	cmp BYTE [rsi + rax], dil ; only cmp last byte of reg
 	je return
 
