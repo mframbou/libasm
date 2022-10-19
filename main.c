@@ -65,9 +65,11 @@ int main()
         char *str = "Hola me llamo pablo\n";
         printf("valid: %ld\n", ft_write(1, str, ft_strlen(str)));
         printf("errno: %s\n", strerror(errno));
+        errno = 0;
 
         printf("\ninvalid: %ld\n", ft_write(-10, str, ft_strlen(str)));
         printf("errno: %s\n", strerror(errno));
+        errno = 0;
     }
 
 	{
@@ -87,6 +89,7 @@ int main()
             printf("buf: [%s]\n", buf);
         }
         printf("errno: %s\n", strerror(errno));
+        errno = 0;
         close(fd);
 
         fd = open("pouet", O_RDONLY);
@@ -97,6 +100,7 @@ int main()
             printf("buf: [%s]\n", buf);
         }
         printf("errno: %s\n", strerror(errno));
+        errno = 0;
     }
 
     {
